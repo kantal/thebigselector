@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>thebigselector</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+</head>
+<body>
+<h1 id="the-big-selector-box">THE BIG SELECTOR BOX</h1>
+<h2 id="a-tkinter-text-widget-based-option-selector">A Tkinter text widget based option selector</h2>
+<p>Copyright (C) 2020, Antal Koós<br />
+License: MIT</p>
+<hr />
+<p><img src="screenshot-1.png" /> <img src="screenshot-2.png" /></p>
+<h4 id="use">Use</h4>
+<p>mouse buttons on item:</p>
+<ul>
+<li>left: selects/unselects the item</li>
+</ul>
+<p>mouse buttons on group separator:</p>
+<ul>
+<li>left: selects all items in the group</li>
+<li>right: unselects all items in the group</li>
+</ul>
+<p>Selecting with dragging the mouse and clicking on “Select/Unselect all” acts only on the selected items.</p>
+<pre><code>import tkinter as tk
+import thebigselector as tbs
+    ...
+bsb= tbs.BigSelBox(win, items= items, callback= cb, intro= intro, see=&quot;items_start&quot;)
+    ...</code></pre>
+<p>See the demos for details!</p>
+<p><br />
+<br />
+</p>
+<h3 id="bigselbox">BigSelBox</h3>
+<hr />
+<p>BigSelBox is an option selector, derived from ttk.Frame and contains a tk.Text widget associated with a vertical ttk.Scrollbar.</p>
+<pre><code>BigSelBox(  master, items=[], selections=[], callback=None,
+            separators={}, sepprops={}, textprops={},
+            frameprops={}, itemprops={},
+            pickedprops={}, intro=&quot; &quot;, introprops={},
+            compl=&quot; &quot;, complprops={}, see=None)</code></pre>
+<h4 id="args">Args:</h4>
+<ul>
+<li>master: the master widget</li>
+<li>items: sequence of strings; whitespaces will be replaced with ’_’</li>
+<li>selections: indexes of initially selected items</li>
+<li>textprops: dict, text widget properties</li>
+<li>frameprops: dict, main frame (ttk.Frame) properties</li>
+<li>itemprops: dict, item text (tag) properties</li>
+<li>pickedprops: dict, text (tag) properties of selected items</li>
+<li><p>callback: called by clicking on an item or group separator or button with these arguments:</p>
+<ul>
+<li>the BigSelBox instance</li>
+<li><p>the trigger action that can be:</p>
+<ul>
+<li>actnOk, actnCancel,</li>
+<li>actnSelect, actnUnselect,</li>
+<li>actnSelectAll, actnUnselectAll,</li>
+<li>actnSelectSeparator, actnUnselectSeparator</li>
+</ul></li>
+<li><p>the index of the selected/unselected item/group separator, or None in case of pressing “Ok”, “Select”, “Unselect all”, “Cancel”</p></li>
+</ul></li>
+<li>separators: dict with <code>index:separator_string</code> pairs, where <code>index</code> is the index of the item before the string must be inserted.</li>
+<li>sepprops: dict, separator (tag) properties</li>
+<li>intro: introductory text string</li>
+<li>introprops: dict, introductory text (tag) properties</li>
+<li>compl: completion text after the item section</li>
+<li>complprops: dict, completion text (tag) properties</li>
+<li><p>see: a text widget index for scroll the text until the part on that position is visible.<br />
+Special indexes:</p>
+<ul>
+<li>Marks: “intro_start”, “intro_end”, “items_start”, “items_end”, “compl_start”, “compl_end”</li>
+<li>Tags: “#5.first”: the 6th item, “$5.first”: the 6th group separator</li>
+</ul></li>
+<li><p>pickedcolors: (foreground, background) colors of the selected items</p></li>
+</ul>
+<h4 id="attributes">Attributes:</h4>
+<ul>
+<li><em>items (ro)</em>: tuple of strings; whitespaces will be replaced with ’_’</li>
+<li><em>selected (ro)</em>: index of selected items</li>
+<li><em>intro (ro)</em>: introductory text</li>
+<li><em>compl (ro)</em>: completion text</li>
+</ul>
+<p>The callback can be set two ways, e.g.: <code>sb.callback=cb</code> or <code>sb["callback"]=cb</code></p>
+<h4 id="methods">Methods:</h4>
+<p><em>set_items(items,selections=[], see=None)</em>: sets the items.</p>
+<ul>
+<li>items: sequence of strings; whitespaces will be replaced with ’_’</li>
+<li>selections: indexes of initially selected items</li>
+<li>see: a text widget index</li>
+</ul>
+<p><em>set_selections(selections, see=None)</em>: sets the selections.</p>
+<ul>
+<li>selections: indexes of initially selected item</li>
+<li>see: a text widget index</li>
+</ul>
+<p><em>set_intro(txt, see=None)</em>: sets the introductory text.</p>
+<ul>
+<li>txt: the text</li>
+<li>see: a text widget index</li>
+</ul>
+<p><em>set_compl(txt, see=None)</em>: sets the completion text.</p>
+<ul>
+<li>txt: the text</li>
+<li>see: a text widget index</li>
+</ul>
+<p><em>see(self,index)</em>: scrolls the text until the part on that position is visible.</p>
+<p><em>disable_button(btnstr)</em>: disables/enables a button.<br />
+<em>enable_button(btnstr)</em>: disables/enables a button.</p>
+<ul>
+<li>btnstr can be “ok”, “cancel”, “select all”, “unselect all”</li>
+</ul>
+<p><br />
+<br />
+</p>
+<h3 id="topbsb">TopBSB</h3>
+<hr />
+<p>A Tkinter top level window class with a ‘BigSelBox’ inside.</p>
+<pre><code>TopBSB(parent, items=[], selections=[], callback=None,
+    separators={}, sepprops={}, textprops={},
+    frameprops={}, itemprops={},
+    pickedprops={}, intro=&quot;&quot;, introprops={},
+    compl=&quot;&quot;, complprops={},
+    **toplevel_kwargs)</code></pre>
+<h4 id="args-1">Args:</h4>
+<ul>
+<li>parent: the parent window</li>
+<li>toplevel_kwargs: tk.Toplevel window attributes</li>
+</ul>
+<p>The other args will be passed to the inner BigSelBox instance.<br />
+When the window is destroyed, the callback also will be called with <code>(box, actnCancel, None)</code>.</p>
+<p><br />
+<br />
+</p>
+<h3 id="module-utilities">Module utilities</h3>
+<hr />
+<p><em>geom(wdg)</em>: returns the widget’s geometry values as ints: <code>(width, height, x, y)</code>.</p>
+<p><em>fix_minsize(wdg)</em>: freezes the widget size to the recommended minimal size.</p>
+</body>
+</html>
