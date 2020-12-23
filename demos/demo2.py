@@ -2,8 +2,6 @@
 #-*- coding:utf-8 -*-
 
 # demo2.py
-# Copyright (C) 2020, Antal Koós
-# License: MIT
 
 import tkinter as tk
 import tkinter.ttk as ttk

@@ -1,0 +1,3 @@
+include Makefile README.md LICENSE NOTICE HISTORY.md
+recursive-include docs *
+recursive-include demos *

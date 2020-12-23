@@ -3,7 +3,7 @@
 
 ## A Tkinter text widget based option selector
 
-Copyright (C) 2020, Antal Koós \
+Copyright (c) 2020, Antal Koós \
 License: MIT
 
 ____
@@ -34,7 +34,7 @@ acts only on the selected items.
         ...
 
 
-See the demos for details!
+See the [demos](https://github.com/kantal/thebigselector/tree/main/demos) for the details!
 
 \
 \
