@@ -5,8 +5,8 @@
 ____
 
 
-![](https://github.com/kantal/thebigselectro/blob/main/docs/screenshot-1.png)
-![](https://github.com/kantal/thebigselectro/blob/main/docs/screenshot-2.png)
+![](https://github.com/kantal/thebigselector/blob/main/docs/screenshot-1.png)
+![](https://github.com/kantal/thebigselector/blob/main/docs/screenshot-2.png)
 
 
 Install: `pip install thebigselector`
