@@ -24,7 +24,8 @@ doc: README.md docs/Use.md docs/Use.html
 publish: pkg
 # Publishing to PyPi
 #: python3 -m pip install --user --upgrade twine
-: python3 -m twine upload --repository testpypi dist/*
+#: python3 -m twine upload --repository testpypi dist/*
+: python3 -m twine upload --repository pypi dist/*
 
 clean:
 : rm -fr build dist *.egg-info
